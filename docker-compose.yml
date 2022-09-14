@@ -12,21 +12,19 @@ services:
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
-      database__connection__password:
+      database__connection__password: ${DB_PASSWORD}
       database__connection__database: ghost
-      # this url value is just an example, and is likely wrong for your environment!
       url: http://${DOMAIN}
-      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
 
   db:
     image: mysql:8.0
     restart: always
     ports:
       - 0.0.0.0:3306:3306
+    volumes:
+      - ./db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
 
   nginx:
     image: nginx:alpine
