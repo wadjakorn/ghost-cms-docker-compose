@@ -36,3 +36,4 @@ services:
       - '443:443'
     volumes:
       - ./nginx/:/etc/nginx/conf.d/
+      - ./cf_ssl:/etc/ssl
