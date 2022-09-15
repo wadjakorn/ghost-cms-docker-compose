@@ -1,7 +1,6 @@
 version: '3.1'
 
 services:
-
   ghost:
     image: ghost:5-alpine
     restart: always
@@ -15,7 +14,6 @@ services:
       database__connection__password: ${DB_PASSWORD}
       database__connection__database: ghost
       url: https://${DOMAIN}
-
   db:
     image: mysql:8.0
     restart: always
@@ -36,4 +34,4 @@ services:
       - '443:443'
     volumes:
       - ./nginx/:/etc/nginx/conf.d/
-      - ./cf_ssl:/etc/ssl
+      - ./ssl:/etc/ssl

@@ -1,9 +1,22 @@
 # Simple Ghost CMS by Docker Compose
 
-edit .env
+## step to run
 
+### 1. update env
 ```
-# how to run
+DOMAIN=<yours domain>
+DB_PASSWORD=<database password>
+```
 
-docker-compose up
+### 2. add ssl
+create directory `ssl`
+in ssl directory add 2 files
+
+`ssl.crt` (ssl certified)
+
+`ssl.key` (ssl key)
+
+### 3. running
+```
+docker-compose up -d
 ```
