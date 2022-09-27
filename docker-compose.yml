@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - 0.0.0.0:2368:2368
+    depends_on:
+      - db
     environment:
       # see https://ghost.org/docs/config/#configuration-options
       database__client: mysql
@@ -14,6 +16,8 @@ services:
       database__connection__password: ${DB_PASSWORD}
       database__connection__database: ghost
       url: https://${DOMAIN}
+    volumes:
+      - ./content:/var/lib/ghost/content
   db:
     image: mysql:8.0
     restart: always
@@ -35,3 +39,5 @@ services:
     volumes:
       - ./nginx/:/etc/nginx/conf.d/
       - ./ssl:/etc/ssl
+    depends_on:
+      - ghost
